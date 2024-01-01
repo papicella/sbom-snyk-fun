@@ -2,27 +2,25 @@
 
 A collection of different examples using Snyk's SBOM generation feature, you must use a minimum of CLI version 1.1071.0 for these demos and have an active internet connection
 
-## Prerequisites- - Installing the CLI
+## Prerequisites
 
 - Install the Snyk CLI using the instructions here https://docs.snyk.io/snyk-cli/install-the-snyk-cli
 - AUTH with Snyk CLI https://docs.snyk.io/snyk-cli/commands/auth
-
-Verify you are ready to use the CLI as shown below. Ensure you are running version "**1.1071.0**" or later
+- Verify you are ready to use the CLI as shown below. Ensure you are running version "**1.1071.0**" or later
 
 ```shell
 $ snyk --version
 1.1266.0
 ```
 
-The demos will use the following repo if you wish to follow along clone the repo https://github.com/papicella/snyk-boot-web as shown below 
+- The demos will use the following repo if you wish to follow along clone the repo https://github.com/papicella/snyk-boot-web as shown below 
 
 ```shell
 $ git clone https://github.com/papicella/snyk-boot-web
 ```
 
-All demo will use JQ for formatting the output you don't need this but it's handy to install this as well https://jqlang.github.io/jq/download/
-
-Finally, if you have multiple organizations, you can set a default from the CLI using:
+- All demo will use JQ for formatting the output you don't need this but it's handy to install this as well https://jqlang.github.io/jq/download/
+- Finally, if you have multiple organizations, you can set a default from the CLI using:
 
 _Note: You can also use --org=<orgslugname>. The ORG_ID works in both the CLI and the API. The organization slug name works in the CLI, but not in the API_
 
@@ -34,7 +32,7 @@ $ snyk config set org=<ORG_ID>
 
 ## Snyk Open-Source demos
 
-First let's generate our first SBON in this example we specifcally reference the maven pom file but we don't need but if you have multiple projects this will ensure you generate a SBOM for the project your interested in 
+First let's generate our first SBOM, in this example we reference the maven pom file but we don't need but if you have multiple projects this will ensure you generate a SBOM for the project your interested in 
 
 _Note: You can also set the format to any of these --format=<cyclonedx1.4+json|cyclonedx1.4+xml|spdx2.3+json>_
 
