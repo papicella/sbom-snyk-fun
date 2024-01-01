@@ -32,7 +32,9 @@ $ snyk config set org=<ORG_ID>
 
 ## Snyk Open-Source demos
 
-First let's generate our first SBOM, in this example we reference the maven pom file but we don't need but if you have multiple projects this will ensure you generate a SBOM for the project your interested in 
+An SBOM can be generated for all supported Open Source package managers as well as unmanaged software projects
+
+- First let's generate our first SBOM, in this example we reference the maven pom file, this will ensure we generate a SBOM for the project we are interested in 
 
 _Note: You can also set the format to any of these --format=<cyclonedx1.4+json|cyclonedx1.4+xml|spdx2.3+json>_
 
@@ -75,6 +77,8 @@ $ snyk sbom --format=cyclonedx1.4+json --file=pom.xml
     },
 
 ```
+
+- 
 
 ## Snyk Container demos
 
