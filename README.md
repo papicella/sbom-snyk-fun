@@ -30,7 +30,7 @@ $ snyk config set org=<ORG_ID>
 
 ## Demos
 
-## Snyk Open-Source demos
+## Snyk SBOM Open-Source demos
 
 An SBOM can be generated for all supported Open Source package managers as well as unmanaged software projects
 
@@ -78,11 +78,25 @@ $ snyk sbom --format=cyclonedx1.4+json --file=pom.xml
 
 ```
 
-- 
+- Given we using a JSON output format we can save the contents of the output to a file as follows
 
-## Snyk Container demos
+```shell
+$ snyk sbom --format=cyclonedx1.4+json --file=pom.xml --json-file-output=apples.json
+```
 
+- For monorepos we would just use --all-projects as follows. This example is not a monorepo so the output would be identical 
 
+```shell
+$ snyk sbom --format=cyclonedx1.4+json --all-projects
+```
+
+More command line options and demos can be found here 
+
+https://docs.snyk.io/snyk-cli/commands/sbom
+
+## Snyk SBOM Container demos
+
+## Snyk SBOM API demos
 
 <hr />
 Pas Apicella [pas at snyk.io] is a Principal Solution Engineer at Snyk APJ 
