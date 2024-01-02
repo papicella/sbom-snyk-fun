@@ -225,6 +225,7 @@ You can use any HTTP client in the examples which follow I will use CURL and HTT
 - In this example we use an open source project to generate an SBOM from 
 
 CURL:
+
 ```shell
 $ curl --get \
   -H "Authorization: token `snyk config get api`" \
@@ -276,18 +277,68 @@ $ curl --get \
 ```
 
 HTTPie:
+
 ```shell
 $ http "https://api.snyk.io/rest/orgs/b9d36c95-d54e-4e09-9c62-1c8c3cebd90d/projects/1cb68b23-2a81-4f11-bd85-6a9f58555ce5/sbom" \
   "Authorization: token `snyk config get api`" \
 format=="cyclonedx1.4+json" \
 version=="2023-03-20"
+HTTP/1.1 200 OK
+Akamai-Cache-Status: Miss from child, Miss from parent
+Akamai-GRN: 0.1f2ada17.1704180019.655e1f5d
+Connection: keep-alive
+Content-Length: 20904
+Content-Type: application/vnd.cyclonedx+json
+Date: Tue, 02 Jan 2024 07:20:21 GMT
+Server: envoy
+Strict-Transport-Security: max-age=31536000; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+snyk-request-id: 7ee2da33-8251-4544-b463-f01bbc063530
+snyk-version-lifecycle-stage: ga
+snyk-version-requested: 2023-03-20
+snyk-version-served: 2023-03-20
+
+{
+    "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+    "bomFormat": "CycloneDX",
+    "components": [
+        {
+            "bom-ref": "2-com.h2database:h2@1.4.200",
+            "name": "com.h2database:h2",
+            "purl": "pkg:maven/com.h2database/h2@1.4.200",
+            "type": "library",
+            "version": "1.4.200"
+        },
+        {
+            "bom-ref": "3-org.apache.logging.log4j:log4j-api@2.13.3",
+            "name": "org.apache.logging.log4j:log4j-api",
+            "purl": "pkg:maven/org.apache.logging.log4j/log4j-api@2.13.3",
+            "type": "library",
+            "version": "2.13.3"
+        },
+    
+    ....
+```
+
+- In this example we use a container project to generate an SBOM from it's an identical command but this time our project ID is a container source project within Snyk so results include container dependencies 
+
+curl:
+
+```shell
+$ curl --get \
+  -H "Authorization: token `snyk config get api`" \
+  --data-urlencode "version=2023-03-20" \
+  --data-urlencode "format=cyclonedx1.4+json" \
+  https://api.snyk.io/rest/orgs/681d22e1-15b6-44af-8161-8b17c768a16c/projects/c3ced45a-aab6-4b65-9d43-9c94418adf7c/sbom
 {
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
   "version": 1,
   "metadata": {
-    "timestamp": "2024-01-02T07:06:03Z",
+    "timestamp": "2024-01-02T07:15:24Z",
     "tools": [
       {
         "vendor": "Snyk",
@@ -296,52 +347,76 @@ version=="2023-03-20"
       }
     ],
     "component": {
-      "bom-ref": "1-com.example:snyk-boot-web@0.0.1-SNAPSHOT",
-      "type": "application",
-      "name": "com.example:snyk-boot-web",
-      "version": "0.0.1-SNAPSHOT",
-      "purl": "pkg:maven/com.example/snyk-boot-web@0.0.1-SNAPSHOT"
+      "bom-ref": "1-docker-image|pasapples/snyk-boot-web@v1",
+      "type": "container",
+      "name": "docker-image|pasapples/snyk-boot-web",
+      "version": "v1"
     },
     "properties": [
       {
         "name": "snyk:org_id",
-        "value": "b9d36c95-d54e-4e09-9c62-1c8c3cebd90d"
+        "value": "681d22e1-15b6-44af-8161-8b17c768a16c"
       },
       {
         "name": "snyk:project_id",
-        "value": "1cb68b23-2a81-4f11-bd85-6a9f58555ce5"
+        "value": "c3ced45a-aab6-4b65-9d43-9c94418adf7c"
       }
     ]
   },
   "components": [
     {
-      "bom-ref": "2-com.h2database:h2@1.4.200",
+      "bom-ref": "2-audit/libaudit-common@1:2.8.4-3",
       "type": "library",
-      "name": "com.h2database:h2",
-      "version": "1.4.200",
-      "purl": "pkg:maven/com.h2database/h2@1.4.200"
+      "name": "audit/libaudit-common",
+      "version": "1:2.8.4-3",
+      "purl": "pkg:deb/debian/libaudit-common@1:2.8.4-3?distro=buster&upstream=audit"
     },
-    {
-      "bom-ref": "3-org.apache.logging.log4j:log4j-api@2.13.3",
-      "type": "library",
-      "name": "org.apache.logging.log4j:log4j-api",
-      "version": "2.13.3",
-      "purl": "pkg:maven/org.apache.logging.log4j/log4j-api@2.13.3"
-    },
-    
-    ....
 ```
 
-- In this example we use a container project to generate an SBOM from it's an identicle command but this time our project ID is a container source project within Snyk so results include container dependancies 
+HTTPie:
 
-curl:
 ```shell
+http "https://api.snyk.io/rest/orgs/681d22e1-15b6-44af-8161-8b17c768a16c/projects/c3ced45a-aab6-4b65-9d43-9c94418adf7c/sbom" \
+  "Authorization: token `snyk config get api`" \
+format=="cyclonedx1.4+json" \
+version=="2023-03-20"
+HTTP/1.1 200 OK
+Akamai-Cache-Status: Miss from child, Miss from parent
+Akamai-GRN: 0.1f2ada17.1704179942.655c21c2
+Connection: keep-alive, Transfer-Encoding
+Content-Type: application/vnd.cyclonedx+json
+Date: Tue, 02 Jan 2024 07:19:02 GMT
+Server: envoy
+Strict-Transport-Security: max-age=31536000; preload
+Transfer-Encoding: chunked
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+snyk-request-id: 3290a3dd-0832-47bb-b425-e8f977c800d2
+snyk-version-lifecycle-stage: ga
+snyk-version-requested: 2023-03-20
+snyk-version-served: 2023-03-20
 
-```
-
-Httpie:
-```shell
-
+{
+    "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+    "bomFormat": "CycloneDX",
+    "components": [
+        {
+            "bom-ref": "2-audit/libaudit-common@1:2.8.4-3",
+            "name": "audit/libaudit-common",
+            "purl": "pkg:deb/debian/libaudit-common@1:2.8.4-3?distro=buster&upstream=audit",
+            "type": "library",
+            "version": "1:2.8.4-3"
+        },
+        {
+            "bom-ref": "3-libcap-ng/libcap-ng0@0.7.9-2",
+            "name": "libcap-ng/libcap-ng0",
+            "purl": "pkg:deb/debian/libcap-ng0@0.7.9-2?distro=buster&upstream=libcap-ng",
+            "type": "library",
+            "version": "0.7.9-2"
+        },
+        
+        ....
 ```
 
 More options and information can be found here 
