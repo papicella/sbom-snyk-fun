@@ -206,7 +206,19 @@ $ snyk container sbom --format=cyclonedx1.4+json alpine@sha256:c5c5fda71656f28e4
     ....
 ```
 
+More command line options and demos can be found here
+
+https://docs.snyk.io/snyk-cli/commands/container-sbom
+
 ## Snyk SBOM API demos
+
+Snyk offers an endpoint to generate SBOM documents for Open Source and Container Projects that are continuously being monitored for issues
+
+
+
+More options and information can be found here 
+
+https://docs.snyk.io/snyk-api/get-a-projects-sbom-document-endpoint
 
 <hr />
 Pas Apicella [pas at snyk.io] is a Principal Solution Engineer at Snyk APJ 
