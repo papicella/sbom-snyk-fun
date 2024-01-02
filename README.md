@@ -159,7 +159,7 @@ $ snyk container sbom --format=cyclonedx1.4+json --exclude-app-vulns pasapples/s
 - You can also refer to a contaimner image by it's digest as shown below
 
 ```shell
-$ snyk container sbom --format=cyclonedx1.4+json alpine@sha256:c5c5fda71656f28e49ac9c5416b3643eaa6a108a8093151d6d1afc9463be8e33 | jq | more
+$ snyk container sbom --format=cyclonedx1.4+json alpine@sha256:c5c5fda71656f28e49ac9c5416b3643eaa6a108a8093151d6d1afc9463be8e33 | jq 
 {
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
@@ -214,7 +214,135 @@ https://docs.snyk.io/snyk-cli/commands/container-sbom
 
 Snyk offers an endpoint to generate SBOM documents for Open Source and Container Projects that are continuously being monitored for issues
 
+On the Snyk Web UI, retrieve your organization ID (UUID format), project ID (UUID) and API key.
 
+* ORG ID - This is the ORG ID inj Snyk that contains the Open Source or container project you wish to generate a SBOM for
+* PROJECT ID - This is the Project ID in snyk 
+* API key - This is your API key or Service Account in Snyk 
+
+You can use any HTTP client in the examples which follow I will use CURL and HTTPie
+
+- In this example we use an open source project to generate an SBOM from 
+
+CURL:
+```shell
+$ curl --get \
+  -H "Authorization: token `snyk config get api`" \
+  --data-urlencode "version=2023-03-20" \
+  --data-urlencode "format=cyclonedx1.4+json" \
+  https://api.snyk.io/rest/orgs/ORG_ID/projects/PROJECT_ID5/sbom
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2024-01-02T07:08:59Z",
+    "tools": [
+      {
+        "vendor": "Snyk",
+        "name": "SBOM Export API",
+        "version": "v1.49.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "1-com.example:snyk-boot-web@0.0.1-SNAPSHOT",
+      "type": "application",
+      "name": "com.example:snyk-boot-web",
+      "version": "0.0.1-SNAPSHOT",
+      "purl": "pkg:maven/com.example/snyk-boot-web@0.0.1-SNAPSHOT"
+    },
+    "properties": [
+      {
+        "name": "snyk:org_id",
+        "value": "b9d36c95-d54e-4e09-9c62-1c8c3cebd90d"
+      },
+      {
+        "name": "snyk:project_id",
+        "value": "1cb68b23-2a81-4f11-bd85-6a9f58555ce5"
+      }
+    ]
+  },
+  "components": [
+    {
+      "bom-ref": "2-com.h2database:h2@1.4.200",
+      "type": "library",
+      "name": "com.h2database:h2",
+      "version": "1.4.200",
+      "purl": "pkg:maven/com.h2database/h2@1.4.200"
+    },
+    
+    ....
+```
+
+HTTPie:
+```shell
+$ http "https://api.snyk.io/rest/orgs/b9d36c95-d54e-4e09-9c62-1c8c3cebd90d/projects/1cb68b23-2a81-4f11-bd85-6a9f58555ce5/sbom" \
+  "Authorization: token `snyk config get api`" \
+format=="cyclonedx1.4+json" \
+version=="2023-03-20"
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2024-01-02T07:06:03Z",
+    "tools": [
+      {
+        "vendor": "Snyk",
+        "name": "SBOM Export API",
+        "version": "v1.49.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "1-com.example:snyk-boot-web@0.0.1-SNAPSHOT",
+      "type": "application",
+      "name": "com.example:snyk-boot-web",
+      "version": "0.0.1-SNAPSHOT",
+      "purl": "pkg:maven/com.example/snyk-boot-web@0.0.1-SNAPSHOT"
+    },
+    "properties": [
+      {
+        "name": "snyk:org_id",
+        "value": "b9d36c95-d54e-4e09-9c62-1c8c3cebd90d"
+      },
+      {
+        "name": "snyk:project_id",
+        "value": "1cb68b23-2a81-4f11-bd85-6a9f58555ce5"
+      }
+    ]
+  },
+  "components": [
+    {
+      "bom-ref": "2-com.h2database:h2@1.4.200",
+      "type": "library",
+      "name": "com.h2database:h2",
+      "version": "1.4.200",
+      "purl": "pkg:maven/com.h2database/h2@1.4.200"
+    },
+    {
+      "bom-ref": "3-org.apache.logging.log4j:log4j-api@2.13.3",
+      "type": "library",
+      "name": "org.apache.logging.log4j:log4j-api",
+      "version": "2.13.3",
+      "purl": "pkg:maven/org.apache.logging.log4j/log4j-api@2.13.3"
+    },
+    
+    ....
+```
+
+- In this example we use a container project to generate an SBOM from it's an identicle command but this time our project ID is a container source project within Snyk so results include container dependancies 
+
+curl:
+```shell
+
+```
+
+Httpie:
+```shell
+
+```
 
 More options and information can be found here 
 
