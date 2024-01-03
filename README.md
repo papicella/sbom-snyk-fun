@@ -20,6 +20,16 @@ $ git clone https://github.com/papicella/snyk-boot-web
 ```
 
 - All demo will use JQ for formatting the output you don't need this but it's handy to install this as well https://jqlang.github.io/jq/download/
+- Have either curl or HTTPie installed
+
+```shell
+$ http --version
+3.2.2
+
+$ which curl
+/usr/bin/curl
+```
+
 - Finally, if you have multiple organizations, you can set a default from the CLI using:
 
 _Note: You can also use --org=<orgslugname>. The ORG_ID works in both the CLI and the API. The organization slug name works in the CLI, but not in the API_
@@ -156,7 +166,7 @@ $ snyk container sbom --format=cyclonedx1.4+json pasapples/snyk-boot-web:v1 | jq
 $ snyk container sbom --format=cyclonedx1.4+json --exclude-app-vulns pasapples/snyk-boot-web:v1
 ```
 
-- You can also refer to a contaimner image by it's digest as shown below
+- You can also refer to a container image by it's digest as shown below
 
 ```shell
 $ snyk container sbom --format=cyclonedx1.4+json alpine@sha256:c5c5fda71656f28e49ac9c5416b3643eaa6a108a8093151d6d1afc9463be8e33 | jq 
@@ -220,7 +230,7 @@ On the Snyk Web UI, retrieve your organization ID (UUID format), project ID (UUI
 * PROJECT ID - This is the Project ID in snyk 
 * API key - This is your API key or Service Account in Snyk 
 
-You can use any HTTP client in the examples which follow I will use CURL and HTTPie
+You can use any HTTP client in the examples which follow I will use CURL and [HTTPie](https://httpie.io/)
 
 - In this example we use an open source project to generate an SBOM from 
 
@@ -231,7 +241,7 @@ $ curl --get \
   -H "Authorization: token `snyk config get api`" \
   --data-urlencode "version=2023-03-20" \
   --data-urlencode "format=cyclonedx1.4+json" \
-  https://api.snyk.io/rest/orgs/ORG_ID/projects/PROJECT_ID5/sbom
+  https://api.snyk.io/rest/orgs/ORG_ID/projects/PROJECT_ID/sbom
 {
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
@@ -279,7 +289,7 @@ $ curl --get \
 HTTPie:
 
 ```shell
-$ http "https://api.snyk.io/rest/orgs/b9d36c95-d54e-4e09-9c62-1c8c3cebd90d/projects/1cb68b23-2a81-4f11-bd85-6a9f58555ce5/sbom" \
+$ http "https://api.snyk.io/rest/orgs/ORG-ID/projects/PROJECT-ID/sbom" \
   "Authorization: token `snyk config get api`" \
 format=="cyclonedx1.4+json" \
 version=="2023-03-20"
@@ -331,7 +341,7 @@ $ curl --get \
   -H "Authorization: token `snyk config get api`" \
   --data-urlencode "version=2023-03-20" \
   --data-urlencode "format=cyclonedx1.4+json" \
-  https://api.snyk.io/rest/orgs/681d22e1-15b6-44af-8161-8b17c768a16c/projects/c3ced45a-aab6-4b65-9d43-9c94418adf7c/sbom
+  https://api.snyk.io/rest/orgs/ORG-ID/projects/PROJECT-ID/sbom
 {
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
@@ -376,7 +386,7 @@ $ curl --get \
 HTTPie:
 
 ```shell
-http "https://api.snyk.io/rest/orgs/681d22e1-15b6-44af-8161-8b17c768a16c/projects/c3ced45a-aab6-4b65-9d43-9c94418adf7c/sbom" \
+http "https://api.snyk.io/rest/orgs/ORG-ID/projects/PROJECT-ID/sbom" \
   "Authorization: token `snyk config get api`" \
 format=="cyclonedx1.4+json" \
 version=="2023-03-20"
