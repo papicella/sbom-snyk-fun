@@ -95,6 +95,301 @@ $ snyk sbom --format=cyclonedx1.4+json --file=pom.xml
 $ snyk sbom --format=cyclonedx1.4+json --file=pom.xml --json-file-output=apples.json
 ```
 
+- Now lets use "sbom test" to test the SBOM JSON itself
+
+```shell
+$ snyk sbom test --experimental --file=apples.json
+
+Testing apples.json
+
+
+Open issues:
+
+× [LOW] Information Exposure
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-3035793
+
+× [LOW] HTTP Request Smuggling
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-3097829
+
+× [LOW] Improper Handling of Case Sensitivity
+  Introduced through: pkg:maven/org.springframework/spring-context@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2689634
+
+× [LOW] Improper Handling of Case Sensitivity
+  Introduced through: pkg:maven/org.springframework/spring-context@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-8230364
+
+× [LOW] Improper Handling of Case Sensitivity
+  Introduced through: pkg:maven/org.springframework/spring-core@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-8230365
+
+× [LOW] Improper Handling of Case Sensitivity
+  Introduced through: pkg:maven/org.springframework/spring-web@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-8230366
+
+× [LOW] Improper Handling of Case Sensitivity
+  Introduced through: pkg:maven/org.springframework/spring-webmvc@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-8230368
+
+× [LOW] Stack-based Buffer Overflow
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-3016888
+
+× [LOW] Stack-based Buffer Overflow
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-3016889
+
+× [LOW] Stack-based Buffer Overflow
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-3113851
+
+× [MEDIUM] Insufficient Hostname Verification
+  Introduced through: pkg:maven/ch.qos.logback/logback-core@1.2.3
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-CHQOSLOGBACK-1726923
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.11.4
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-2326698
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.11.4
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-3038424
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.11.4
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-3038426
+
+× [MEDIUM] Information Exposure
+  Introduced through: pkg:maven/com.h2database/h2@1.4.200
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMH2DATABASE-3146851
+
+× [MEDIUM] Arbitrary Code Execution
+  Introduced through: pkg:maven/org.apache.logging.log4j/log4j-core@2.15.0
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHELOGGINGLOG4J-2327339
+
+× [MEDIUM] Improper Input Validation
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-1728265
+
+× [MEDIUM] HTTP Request Smuggling
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-1728266
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-3326459
+
+× [MEDIUM] Unprotected Transport of Credentials
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-3369687
+
+× [MEDIUM] Access Restriction Bypass
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-5862028
+
+× [MEDIUM] Improper Input Validation
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-5959654
+
+× [MEDIUM] Incomplete Cleanup
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-5959972
+
+× [MEDIUM] Privilege Escalation
+  Introduced through: pkg:maven/org.springframework/spring-web@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-1296829
+
+× [MEDIUM] Improper Output Neutralization for Logs
+  Introduced through: pkg:maven/org.springframework/spring-core@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2329097
+
+× [MEDIUM] Improper Input Validation
+  Introduced through: pkg:maven/org.springframework/spring-core@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2330878
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.springframework/spring-expression@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2434828
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.springframework/spring-beans@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2823313
+
+× [MEDIUM] Allocation of Resources Without Limits or Throttling
+  Introduced through: pkg:maven/org.springframework/spring-expression@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-3369749
+
+× [MEDIUM] Allocation of Resources Without Limits or Throttling
+  Introduced through: pkg:maven/org.springframework/spring-expression@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-5422217
+
+× [MEDIUM] Open Redirect
+  Introduced through: pkg:maven/org.springframework/spring-web@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-6597980
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.springframework/spring-web@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-7687447
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.springframework/spring-webmvc@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-8384234
+
+× [MEDIUM] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.springframework.boot/spring-boot-actuator@2.3.10.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORKBOOT-6226862
+
+× [MEDIUM] Stack-based Buffer Overflow
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-3016891
+
+× [MEDIUM] Arbitrary Code Execution
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-3152153
+
+× [MEDIUM] Dual license: EPL-1.0, LGPL-2.1
+  Introduced through: pkg:maven/ch.qos.logback/logback-classic@1.2.3
+  URL: https://security.snyk.io/vuln/snyk:lic:maven:ch.qos.logback:logback-classic:(EPL-1.0_OR_LGPL-2.1)
+
+× [MEDIUM] Dual license: EPL-1.0, LGPL-2.1
+  Introduced through: pkg:maven/ch.qos.logback/logback-core@1.2.3
+  URL: https://security.snyk.io/vuln/snyk:lic:maven:ch.qos.logback:logback-core:(EPL-1.0_OR_LGPL-2.1)
+
+× [MEDIUM] Dual license: MPL-2.0, EPL-1.0
+  Introduced through: pkg:maven/com.h2database/h2@1.4.200
+  URL: https://security.snyk.io/vuln/snyk:lic:maven:com.h2database:h2:(MPL-2.0_OR_EPL-1.0)
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/ch.qos.logback/logback-classic@1.2.3
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-CHQOSLOGBACK-6094942
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/ch.qos.logback/logback-core@1.2.3
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-CHQOSLOGBACK-6094943
+
+× [HIGH] Uncontrolled Resource Consumption ('Resource Exhaustion')
+  Introduced through: pkg:maven/ch.qos.logback/logback-classic@1.2.3
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-CHQOSLOGBACK-6097492
+
+× [HIGH] Uncontrolled Resource Consumption ('Resource Exhaustion')
+  Introduced through: pkg:maven/ch.qos.logback/logback-core@1.2.3
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-CHQOSLOGBACK-6097493
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.11.4
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-2421244
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/com.fasterxml.jackson.core/jackson-core@2.11.4
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538
+
+× [HIGH] XML External Entity (XXE) Injection
+  Introduced through: pkg:maven/com.h2database/h2@1.4.200
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMH2DATABASE-1769238
+
+× [HIGH] Remote Code Execution (RCE)
+  Introduced through: pkg:maven/com.h2database/h2@1.4.200
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMH2DATABASE-2331071
+
+× [HIGH] Remote Code Execution (RCE)
+  Introduced through: pkg:maven/com.h2database/h2@1.4.200
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMH2DATABASE-31685
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.apache.logging.log4j/log4j-core@2.15.0
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHELOGGINGLOG4J-2321524
+
+× [HIGH] Privilege Escalation
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-2414084
+
+× [HIGH] Improper Input Validation
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-3225086
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-5953331
+
+× [HIGH] Improper Input Validation
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-6092281
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-6435948
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-6435950
+
+× [HIGH] Insufficient Session Expiration
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-7430175
+
+× [HIGH] Allocation of Resources Without Limits or Throttling
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-8073090
+
+× [HIGH] Improper Input Validation
+  Introduced through: pkg:maven/org.glassfish/jakarta.el@3.0.3
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGGLASSFISH-1297098
+
+× [HIGH] Open Redirect
+  Introduced through: pkg:maven/org.springframework/spring-web@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-6261586
+
+× [HIGH] Open Redirect
+  Introduced through: pkg:maven/org.springframework/spring-web@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-6444790
+
+× [HIGH] Path Traversal
+  Introduced through: pkg:maven/org.springframework/spring-webmvc@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-7945490
+
+× [HIGH] Path Traversal
+  Introduced through: pkg:maven/org.springframework/spring-webmvc@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-8230373
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.springframework.boot/spring-boot-autoconfigure@2.3.10.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORKBOOT-5564390
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-2806360
+
+× [HIGH] Denial of Service (DoS)
+  Introduced through: pkg:maven/org.yaml/snakeyaml@1.26
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-6056527
+
+× [CRITICAL] Remote Code Execution (RCE)
+  Introduced through: pkg:maven/com.h2database/h2@1.4.200
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-COMH2DATABASE-2348247
+
+× [CRITICAL] Remote Code Execution (RCE)
+  Introduced through: pkg:maven/org.apache.logging.log4j/log4j-core@2.15.0
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHELOGGINGLOG4J-2320014
+
+× [CRITICAL] Uncaught Exception
+  Introduced through: pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.45
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-8383920
+
+× [CRITICAL] Remote Code Execution
+  Introduced through: pkg:maven/org.springframework/spring-beans@5.2.14.RELEASE
+  URL: https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2436751
+
+╭──────────────────────────────────────────────────────────────────────╮
+│  Test summary                                                        │
+│    Organization:    a74651b5-a1c6-4a0a-b4b6-87788fb0f8f6             │
+│    Test type:       Software Bill of Materials                       │
+│    Path:            apples.json                                      │
+│                                                                      │
+│    Open issues:     69 [ 4 CRITICAL  26 HIGH  29 MEDIUM  10 LOW ]    │
+╰──────────────────────────────────────────────────────────────────────╯
+```
 - For monorepos we would just use --all-projects as follows. This example is not a monorepo so the output would be identical 
 
 ```shell
